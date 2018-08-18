@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.1.3/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 1000px;
+        width: 100%;
+      } border:5
+    </style>
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.1.3/build/ol.js"></script>
+    <title>Web GIS application </title>
+	<link rel="stylesheet" href="stylesheet/main.css">
+  </head>
+  <body>
+    <h2>Web GIS application Model of Karimnagar Municipal Corporation </h2>
+	
+
+	
+		
+	
+		<div>
+	<div class="wrapper">
+	<!-- Navigation -->
+	<nav class="main-nav">
+	<ul>
+	<li>
+	<a href="#">Home</a>
+	</li>
+	<li>
+	<a href="#">About</a>
+	</li>
+	<li>
+	<a href="#">Services</a>
+	</li>
+	<li>
+	<a href="#">Contact</a>
+	</li>
+	</ul>
+	</nav>
+	
+	<!-- Top Container -->
+	<section class="top-container">
+	<header class="showcase">
+	<h1>Geo Spatial World</h1>
+	<p>GIS Basemap data for user </p>
+	</section>
+	
+	<! -- Boxes Section -->
+	<section class="boxes">
+	<div class="box">
+	 <i class="fas fa-globe-americas"></i>
+	 <h3>Navigation</h3>
+	</div>
+	</section>
+	<p>TMDP GIS Base Map Layers </p>
+    <div id="map" class="map"></div>
+    <script>
+      var map = new ol.Map({
+	   view: new ol.View({
+          center: ol.proj.fromLonLat([79.13352222, 18.43426812]),
+          zoom: 13
+		  }), 
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        target: 'map'   
+      });
+	  
+	  var carriage_way=new ol.layer.Image({
+	  source: new ol.source.ImageWMS({
+	  url:'http://localhost:8080/geoserver/KarimNagar_BaseMap/wms',
+	  params:{'LAYERS':'KarimNagar_BaseMap:carriage_way'},
+	  serverType:'geoserver'
+	  
+	  })
+	  
+	  });
+	  
+	  map.addLayer(carriage_way);
+	  
+	  var ward_boundary=new ol.layer.Image({
+	  source: new ol.source.ImageWMS({
+	  url:'http://localhost:8080/geoserver/KarimNagar_BaseMap/wms',
+	  params:{'LAYERS':'KarimNagar_BaseMap:ward_boundary'},
+	  serverType:'geoserver'
+	  
+	  })
+	  
+	  });
+	  
+	  map.addLayer(ward_boundary);
+	 
+	  
+	  var buildings=new ol.layer.Image({
+	  source: new ol.source.ImageWMS({
+	  url:'http://localhost:8080/geoserver/KarimNagar_BaseMap/wms',
+	  params:{'LAYERS':'KarimNagar_BaseMap:buildings'},
+	  serverType:'geoserver'
+	  
+	  })
+	  
+	  });
+	  
+	  map.addLayer(buildings);
+	  
+	  
+	  
+    </script>
+	
+	<!-- Info Section -->
+	<Section class="Info">
+	<img src="img/LOCATIONMAP_KARIMNAGAR.jpg" alt="">
+	<div>
+	<h2> GIS Layers on the Map</h2>
+	<p>Select the Layer and Take a tour</p>
+	</div>
+	
+	</Section>
+	
+	<!--  Portfolio -->
+	<section class="portfolio">
+	<img 
+	src-"img/CONTOUR_KARMNAGAR.jpg" alt="">
+	<img 
+	src-"img/LOCATIONMAP_KARIMNAGAR.jpg" alt="">
+	 
+	 </section>
+	 
+	 
+	 <!-- Footer -->
+	 <footer>
+	 <p>Karim nagar Base Map &copy; 2018</p>
+	 </footer>
+	 
+	</div>
+	<!-- Wrapper Ends -->
+  </body>
+</html>
